@@ -1,30 +1,30 @@
-# Manipulación de UI en iOS (Swift - ACT2)
+# Atrapa los 5 Pesos (SwiftUI - Actividad 3)
 
-Este proyecto es una aplicación básica para iOS desarrollada en Swift utilizando Xcode. Su objetivo principal es demostrar la interacción y manipulación dinámica de elementos de la interfaz de usuario (UI) utilizando el framework `UIKit`. Mediante el uso de conexiones de Storyboard, la aplicación responde a eventos del usuario para modificar propiedades visuales en tiempo real.
+Este proyecto es un minijuego de agilidad mental y reflejos para iOS, desarrollado completamente con SwiftUI y Swift. El objetivo principal es poner a prueba la rapidez del jugador al intentar tocar una moneda de "5 pesos" que cambia de posición constantemente en la pantalla antes de que se agote el tiempo.
 
 **Autor:** Roberto Daniel Ramos Flores
 
-## Características Principales
+## ¿Cómo jugar?
 
-*   **Actualización de Texto Dinámica:** Implementa un `UISlider` que captura valores numéricos para actualizar un `UILabel` ("Edad: X años") en tiempo real mediante un `@IBAction`.
-*   **Control de Opacidad (`Alpha`):** Un segundo `UISlider` permite al usuario ajustar la transparencia de una imagen (`UIImageView`), modificando su propiedad `alpha` entre 0.0 y 1.0.
-*   **Modificación de Propiedades de Vista:** Un botón (`UIButton`) cambia el color de fondo de la vista principal (`view.backgroundColor`) al color azul del sistema (`.systemBlue`).
-*   **Visibilidad de Elementos (`isHidden`):** Incorpora un botón que alterna el estado de visibilidad de la imagen, utilizando el método `.toggle()` sobre la propiedad `isHidden`.
-*   **Carga de Imágenes Programática:** Un botón específico carga y asigna un objeto `UIImage` (referenciando el recurso "foto") al componente `UIImageView` desde el código.
+1.  Al iniciar la aplicación, presiona el botón **Iniciar** para comenzar la partida.
+2.  Aparecerá una moneda de $5 en una posición aleatoria de la pantalla.
+3.  Toca la moneda lo más rápido posible. Cada toque exitoso sumará **1 punto** a tu marcador y moverá la moneda a una nueva ubicación.
+4.  Si tardas más de 0.85 segundos en tocarla, la moneda se moverá automáticamente para aumentar la dificultad.
+5.  El juego dura exactamente **10 segundos**. El contador de tiempo cambiará de color a amarillo en los últimos 3 segundos como advertencia. Al finalizar, podrás ver tu puntuación y presionar "¡Otra Vez! 🇲🇽" para reiniciar.
 
-## Tecnologías Utilizadas
+## Características Técnicas y UI
 
-*   **Lenguaje:** Swift
-*   **Framework UI:** UIKit
-*   **Entorno de Desarrollo:** Xcode
-*   **Arquitectura:** MVC (Modelo-Vista-Controlador basado en Storyboards)
+*   **Interfaz Declarativa:** Interfaz construida usando `VStack`, `HStack`, y `ZStack` en SwiftUI.
+*   **Gestos (Tap Gesture):** Detección de toques a través de `.onTapGesture` para interactuar con la moneda.
+*   **Temporizadores (Timers):** Uso de `Timer.scheduledTimer` para manejar la cuenta regresiva del juego (1 segundo) y el movimiento automático de la moneda (0.85 segundos).
+*   **Animaciones:** Desplazamiento suave de la moneda implementado con `.animation(.easeInOut(duration: 0.2))`.
+*   **Diseño Temático:** Fondo de pantalla implementado con un `LinearGradient` utilizando los colores de la bandera de México, y un diseño de moneda creado con figuras de SwiftUI (`Circle`) superpuestas y estilizadas.
 
 ## Estructura del Proyecto
 
-De acuerdo con la estructura del repositorio `act2`, los archivos clave se organizan de la siguiente manera dentro de la carpeta `ACT2`:
+De acuerdo con el árbol de archivos del repositorio[cite: 11], la estructura principal es la siguiente:
 
-*   `ViewController.swift`: Contiene la lógica del controlador de la vista, definiendo las referencias a la interfaz (`@IBOutlet`) y las funciones de respuesta a eventos (`@IBAction`).
-*   `AppDelegate.swift` y `SceneDelegate.swift`: Archivos delegados que manejan el ciclo de vida de la aplicación y la configuración de las escenas (ventanas) del dispositivo.
-*   `Info.plist`: Archivo XML (Property List) que define la configuración, metadatos y manifiesto de escenas de la aplicación.
-*   `Assets.xcassets`: Directorio destinado a almacenar los recursos gráficos de la aplicación, como la imagen utilizada en el `UIImageView`.
-*   `Base.lproj`: Carpeta que típicamente contiene el archivo `Main.storyboard` para el diseño visual de la interfaz.
+*   `Actividad_3App.swift`: Archivo principal que define el punto de entrada de la aplicación (`@main`) y carga la vista principal[cite: 11].
+*   `ContentView.swift`: Contiene toda la lógica del juego, las variables de estado (`@State`) para la puntuación y el tiempo, y la construcción de la interfaz gráfica[cite: 11].
+*   `SpinComponent.swift`: Un componente de **RealityKit** que define un eje de rotación en un entorno 3D, preparando la aplicación para posibles integraciones de realidad aumentada[cite: 11].
+*   `Assets.xcassets`: Carpeta destinada a los recursos gráficos estáticos de la aplicación[cite: 11].
